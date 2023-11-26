@@ -1,0 +1,69 @@
+            cmd = new SqlCommand();
+            cmd.Connection = cn;
+            cmd.CommandText = "select * from  Courses where course_id=1";
+            dr1 = cmd.ExecuteReader();
+
+            int cnt = 1;
+
+            while (dr1.Read())
+            {
+                cnt++;
+            }
+            dr1.Close();
+
+
+            cmd = new SqlCommand("select * from Courses where course_id=1";, cn);
+            dr1 = cmd.ExecuteReader();
+            int i;
+            Literal l1;
+            Image i1;
+            HyperLink h1;
+            PlaceHolder1.Controls.Add(new LiteralControl("<table class='table'>"));
+            PlaceHolder1.Controls.Add(new LiteralControl("<tr>"));
+            int j;
+            for (i = 0; i < cnt; i++)
+            {
+                for (j = 0; j < 5; j++)
+                {
+                    if (dr1.Read())
+                    {
+                        PlaceHolder1.Controls.Add(new LiteralControl("<td>"));
+                        l1 = new Literal();
+                        i1 = new Image();
+                        h1 = new System.Web.UI.WebControls.HyperLink();
+                        //h1.Text = "<h5>Name: " + dr1.GetString(1) + "</h5>";
+                        
+                        //h1.Text = "<h5>Fees: " + dr1.GetString(3) + "</h5>";
+                        //h1.Text = "<h5>Duration: " + dr1.GetString(4) + "</h5>";
+                        //h1.Text = "<h5>Contents: " + dr1.GetString(5) + "</h5>";
+                        //h1.Text = "<h5>Prerequist: " + dr1.GetString(6) + "</h5>";
+                        //h1.Text = "<h5>Email: " + dr1.GetString(7) + "</h5>";
+                        //h1.NavigateUrl = "http://localhost:14117/User.aspx";
+                        i1.Height = 500;
+                        i1.Width = 500;
+                        i1.ImageUrl = "~/Upload/" + dr1.GetString(6);
+                        l1.Text = "<br>";
+                        PlaceHolder1.Controls.Add(i1);
+                        PlaceHolder1.Controls.Add(new LiteralControl("</td><td align=right>"));
+                        PlaceHolder1.Controls.Add(l1);
+                        PlaceHolder1.Controls.Add(h1);
+
+                        PlaceHolder1.Controls.Add(new LiteralControl("<h5>Name:&nbsp;&nbsp;&nbsp;" + dr1.GetString(1) + ""));
+                        PlaceHolder1.Controls.Add(new LiteralControl("<h5>Gender:&nbsp;&nbsp;&nbsp;" + dr1.GetString(2) + ""));
+                        PlaceHolder1.Controls.Add(new LiteralControl("<h5>Age:&nbsp;&nbsp;&nbsp;" + dr1.GetString(3) + ""));
+                        PlaceHolder1.Controls.Add(new LiteralControl("<h5>Country:&nbsp;&nbsp;&nbsp;" + dr1.GetString(4) + ""));
+                        PlaceHolder1.Controls.Add(new LiteralControl("<h5>City:&nbsp;&nbsp;&nbsp;" + dr1.GetString(5) + ""));
+
+
+                        PlaceHolder1.Controls.Add(new LiteralControl("<br>"));
+                        PlaceHolder1.Controls.Add(new LiteralControl("</td>"));
+                    }
+
+                }// ending j loop
+                PlaceHolder1.Controls.Add(new LiteralControl("</tr>"));
+
+            }//ending i loop
+
+            PlaceHolder1.Controls.Add(new LiteralControl("</table>"));
+            dr1.Close();
+        }

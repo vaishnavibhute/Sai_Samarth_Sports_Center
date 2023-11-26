@@ -1,0 +1,35 @@
+ static int rate;
+        static int prodid;
+        static int qty;
+        static ArrayList idarray = new ArrayList();
+        static ArrayList nmarray = new ArrayList();
+        static ArrayList qtyarray = new ArrayList();
+        static ArrayList ratearray = new ArrayList();
+        static ArrayList cntarray = new ArrayList();
+
+        protected void btn_add_Click(object sender, EventArgs e)
+        {
+             cnt = cnt + 1;
+                        idarray.Add(Session["prodid"]);
+                        Session.Add("idarray", idarray);
+
+
+                        nmarray.Add(Session["prodnm"]);
+                        Session.Add("nmarray", nmarray);
+
+
+                        ratearray.Add(Session["rate"]);
+                        Session.Add("ratearray", ratearray);
+
+
+                        Session.Add("qty",DropDownList1.SelectedValue);
+                        qtyarray.Add(Session["qty"]);
+                        Session.Add("qtyarray", qtyarray);
+
+                        Session.Add("cnt", cnt);
+                        cntarray.Add(Session["cnt"]);
+                        Session.Add("cntarray", cntarray);
+                        Response.Redirect("~/Search/Form_Bill.aspx");
+
+
+            }        
